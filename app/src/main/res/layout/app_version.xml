@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/version_backgorund"
+    android:gravity="center">
+
+    <TextView
+        android:padding="100dp"
+        android:fontFamily="@assets/fonts/bestpart.ttf"
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tugas UTS ver.1"
+        android:textColor="#FFF"
+        android:textSize="25sp"/>
+
+</LinearLayout>
