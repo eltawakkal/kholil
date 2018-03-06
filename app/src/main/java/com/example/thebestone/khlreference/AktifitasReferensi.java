@@ -11,6 +11,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import java.util.zip.Inflater;
 
@@ -27,14 +28,23 @@ public class AktifitasReferensi extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.actifitas_referensi);
 
+//        ambil data yang dikirim oleh aktifitas login.
+        String user = getIntent().getStringExtra("user");
+//        menampilakan pesan untuk menyapa user berdasarkan data yang dikirim dari aktifias sebelumnya
+        Toast.makeText(this, "Hi, " + user + " Selemat Datang!", Toast.LENGTH_SHORT).show();
+
+//        inisialisasi
         img1 = findViewById(R.id.img1);
         img2 = findViewById(R.id.img2);
         img3 = findViewById(R.id.img3);
         img4 = findViewById(R.id.img4);
 
+
+//        ketika image di klik
         img1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+//                memanggil alert dialog
                 showReference("Tayammum", tayammum);
             }
         });
@@ -42,6 +52,7 @@ public class AktifitasReferensi extends AppCompatActivity{
         img2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+//                memanggil alert dialog
                 showReference("Wudhu", wudhu);
             }
         });
@@ -49,6 +60,7 @@ public class AktifitasReferensi extends AppCompatActivity{
         img3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+//                memanggil alert dialog
                 showReference("Sholat", sholat);
             }
         });
@@ -56,41 +68,58 @@ public class AktifitasReferensi extends AppCompatActivity{
         img4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+//                memanggil alert dialog
                 showReference("Tentang Saya", about);
             }
         });
 
     }
 
+
+//    membuat menu
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+//        mengambil menu dari folder mnu
         getMenuInflater().inflate(R.menu.menu_referensi, menu);
 
         return super.onCreateOptionsMenu(menu);
     }
 
+//    kejadian ketika menu di klik
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
         if (item.getItemId()==R.id.action_tentang) {
-            AlertDialog.Builder alert = new AlertDialog.Builder(this);
-            alert.setView(R.layout.app_version);
-            alert.setPositiveButton("Close", null);
-            alert.create().show();
+//            menampilkan alert dialog
+            AlertDialog.Builder alert = new AlertDialog.Builder(this); // membuat objek aler dialog
+            alert.setView(R.layout.app_version); //memasukkan tampilan dari laout kedalam alert dialog
+            alert.setPositiveButton("Close", null); // membuat tombol close
+            alert.create().show(); // menampilakan alert dialog
         }
 
         return true;
     }
 
+
+//    alert dialog, berfungsi untuk menampilkan pesan dengan menggunakan kotak
+//    alert dialoh dibuat didalam fungsi agar tidah dilakukan perkodingan ulang
+//    agar alet dialog dapat digunakan oleh lebih dari satu kali, fungsi diberikan parameter
+//    alert akan mengambil data dari parameter yang ada
+
     public void showReference(String judul, String pesan){
         AlertDialog.Builder alert = new AlertDialog.Builder(this);
-        alert.setCancelable(false);
-        alert.setTitle(judul);
-        alert.setMessage(pesan);
-        alert.setPositiveButton("Oke", null);
-        alert.create().show();
+        alert.setCancelable(false); // mengeset agar tidak dapat di cancel
+        alert.setTitle(judul); // mengeset judul
+        alert.setMessage(pesan); // mengeset pesan
+        alert.setPositiveButton("Oke", null); // membuat tobol oke
+        alert.create().show(); // menapilkan alert
     }
 
+
+    //variable untuk menyipan data dari referensi
+
+
+//    data tayammu
     String tayammum =
             "Urutan Tayamum :\n" +
             "1. Membaca basmalah\n" +
@@ -102,6 +131,8 @@ public class AktifitasReferensi extends AppCompatActivity{
             "7. Usapkan debu pada telapak tangan.\n" +
             "8. Ambil debu lagi dan lakukan seperti langkah ke 3 diatas.\n" +
             "Usapkan debu ke lengan kanan dan kiri.";
+
+//    data wudhu
     String wudhu =
             "Urutan wudhu:\n" +
             "1. Mencuci / membasuh kedua telapak tangan tiga kali sambil membaca basmalah.\n" +
@@ -112,6 +143,8 @@ public class AktifitasReferensi extends AppCompatActivity{
             "6. Menyapu / membersihkan kedua telinga mulai bagian daun telinga bawah dan menuju bagian atas, sebanyak tiga kali.\n" +
             "7. Mencuci / membersihkan kaki kanan dan kiri, mulai dari ujung jari merata hingga mata kaki, masing-masing sebanyak tiga kali.\n" +
             "8. Membaca doa setelah wudhu.";
+
+//    data sholat
     String sholat =
             "Urutan sholat:\n" +
             "1. Niat\n" +
@@ -124,6 +157,8 @@ public class AktifitasReferensi extends AppCompatActivity{
             "8. Duduk diantara dua sujud\n" +
             "9. Duduk tasyahud (tahiyat) akhir\n" +
             "10. Salam.";
+
+//    data profile
     String about =
             "Nama    : Khalilurrahman\n" +
             "NIM     : 15112100\n" +
